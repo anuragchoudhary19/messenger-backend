@@ -8,10 +8,10 @@ io.on('connection', (socket) => {
     io.emit('online', id);
   });
   socket.on('typing', (senderId, recieverId) => {
-    io.emit('typing', senderId, recieverId);
+    socket.broadcast.emit('typing', senderId, recieverId);
   });
   socket.on('notTyping', (senderId, recieverId) => {
-    io.emit('notTyping', senderId, recieverId);
+    socket.broadcast.emit('notTyping', senderId, recieverId);
   });
   socket.on('disconnect', () => {
     io.emit('offline', socket.handshake.query.id);
